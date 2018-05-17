@@ -1,7 +1,7 @@
 package com.example.karls.computersciencefinal;
 
 public class Alpaca {
-    private int numOfAlpacas;
+    private int numOfAlpacas = 15;
 
     public int getNumOfAlpacas() {
         return numOfAlpacas;

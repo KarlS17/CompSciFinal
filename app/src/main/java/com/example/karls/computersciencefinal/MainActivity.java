@@ -1,5 +1,8 @@
 package com.example.karls.computersciencefinal;
 
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +24,25 @@ public class MainActivity extends AppCompatActivity {
     TextView numOfAlpacas;
     TextView foodCount;
     TextView dayCount;  //Textview for Daycount
+
+    public void showDialog() {
+        int mStackLevel=1;
+        mStackLevel++;
+
+        // DialogFragment.show() will take care of adding the fragment
+        // in a transaction.  We also want to remove any currently showing
+        // dialog, so make our own transaction and take care of that here.
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        // Create and show the dialog.
+        DialogFragment newFragment = MyDialogFragment.newInstance(mStackLevel);
+        newFragment.show(ft, "dialog");
+    }
 
 
     @Override
@@ -51,10 +73,19 @@ public class MainActivity extends AppCompatActivity {
         eatButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                int foodNeeded = theAlpacas.getNumOfAlpacas()/3; //5 if num of alpacas is 15
-                food = food-foodNeeded;
-                foodCount.setText(food + " Pieces of Food Remaining");
 
+                if (theAlpacas.getNumOfAlpacas()<=0){
+                    numOfAlpacas.setText("You are out of Alpacs");
+                }
+
+                if (food<=0)
+                    foodCount.setText("You are out of food");
+                else {
+                    int foodNeeded = theAlpacas.getNumOfAlpacas() / 3; //5 if num of alpacas is 15
+                    food = food - foodNeeded;
+                    foodCount.setText(food + " Pieces of Food Remaining");
+
+                }
 
             }
         });

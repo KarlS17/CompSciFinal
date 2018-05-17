@@ -51,15 +51,21 @@
         android:id="@+id/numOfAlpacas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="59dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="58dp"
+        app:layout_constraintEnd_toStartOf="@+id/dayCount"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="509dp" />
 
     <TextView
         android:id="@+id/food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="95dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="328dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dayCount"
         tools:layout_editor_absoluteY="509dp" />
 </android.support.constraint.ConstraintLayout>
