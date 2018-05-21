@@ -70,7 +70,7 @@
         tools:layout_editor_absoluteY="509dp" />
 
     <ImageView
-        android:id="@+id/regularalpaca1"
+        android:id="@+id/fix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -100,9 +100,9 @@
         android:id="@+id/retrieveFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="450dp"
         android:text="Retrieve Food"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regularalpaca1" />
+        app:layout_constraintTop_toBottomOf="@+id/numOfAlpacas" />
 </android.support.constraint.ConstraintLayout>

@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         Button newAlpaca = findViewById(R.id.newAlpaca);      //Creates New Alpaca button
         Button sleepButton = findViewById(R.id.sleep);      //Creates Sleep button
         Button resetButton = findViewById(R.id.reset);
+        Button findFoodButton = findViewById(R.id.retrieveFood);
 
         this.dayCount = findViewById(R.id.dayCount);
         this.numOfAlpacas = findViewById(R.id.numOfAlpacas);
@@ -91,6 +92,33 @@ public class MainActivity extends AppCompatActivity {
         //foodCount.setText(food);
         //dayCount.setText("Day" + day);
 
+        findFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (randomVal>6){
+                    food += 5;
+                    foodCount.setText(food);
+                }
+                else if(randomVal<6 && randomVal>1){
+                    food+=3;
+                    foodCount.setText(food);
+                }
+                else if (randomVal<2){
+                    theAlpacas.setNumOfAlpacas(-2);
+                    numOfAlpacas.setText(theAlpacas.getNumOfAlpacas() + "Alpacas");
+                }
+
+                if(theAlpacas.getNumOfAlpacas()<=0){
+                    numOfAlpacas.setText("No more Alpacas");
+                }
+
+
+
+            }
+        });
+
+
+
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 theAlpacas.setNumOfAlpacas(15);
                 food = 15;
                 dayCount.setText("Day " + day);
-                foodCount.setText("Day " + day);
+                foodCount.setText(food + "remaining");
                 numOfAlpacas.setText(theAlpacas.getNumOfAlpacas() + "Remaining");
             }
         });
@@ -147,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 randomNum();
-                if(theAlpacas.getNumOfAlpacas()<=0){
+                if(theAlpacas.getNumOfAlpacas()<=2){ //Make sure to set to 0 before realese
                     regularalpaca1.setVisibility(View.GONE);;
                 }
 
@@ -179,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             }});
 
         ///////////////////Movement//////////////////
-        regularalpaca1 = (ImageView) findViewById(R.id.regularalpaca1);
+        regularalpaca1 = (ImageView) findViewById(R.id.fix);
 
         //Gets screen size
 
