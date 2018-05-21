@@ -11,8 +11,6 @@ public class Alpaca {
         Position = position;
     }
 
-
-
     public void numOfLlamasOnScreen(){
 
     }

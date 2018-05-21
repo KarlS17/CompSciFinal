@@ -19,14 +19,16 @@ import java.util.TimerTask;
 //PREVENT FOOD GOING INTO NEGATIVES BEFORE IT UPDATES
 
 public class MainActivity extends AppCompatActivity {
+    Random deathRandom = new Random();
 
-
+    int deathNum = deathRandom.nextInt(10);
     Random rand = new Random();
     public void randomNum(){
         int val = rand.nextInt(10);
         randomVal = val;
         int specialnum = rand.nextInt(100);
         rareVal = specialnum;
+
     }
 
     Alpaca theAlpacas = new Alpaca();   //Creates Alpaca selection
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     TextView numOfAlpacas;  //Textview for number of Alpacas
     TextView foodCount; //Textview for food counter
     TextView dayCount;  //Textview for Daycount
+    TextView reset; //Reset Button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +76,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         Button eatButton = findViewById(R.id.eatButton);    //Creates eat button
         Button newAlpaca = findViewById(R.id.newAlpaca);      //Creates New Alpaca button
         Button sleepButton = findViewById(R.id.sleep);      //Creates Sleep button
+        Button resetButton = findViewById(R.id.reset);
 
         this.dayCount = findViewById(R.id.dayCount);
         this.numOfAlpacas = findViewById(R.id.numOfAlpacas);
         this.foodCount = findViewById(R.id.food);
+
+
+        numOfAlpacas.setText(theAlpacas.getNumOfAlpacas() + "Remaining");
+        //foodCount.setText(food);
+        //dayCount.setText("Day" + day);
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                day = 0;
+                theAlpacas.setNumOfAlpacas(0);
+                theAlpacas.setNumOfAlpacas(15);
+                food = 15;
+                dayCount.setText("Day " + day);
+                foodCount.setText("Day " + day);
+                numOfAlpacas.setText(theAlpacas.getNumOfAlpacas() + "Remaining");
+            }
+        });
+
+
 
 
         //Sleep Button Method
@@ -87,9 +112,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dayCount.setText("Day " + day++ );
+                if (deathNum>7){
+                    theAlpacas.setNumOfAlpacas(theAlpacas.getNumOfAlpacas()-3);
+                }
+                numOfAlpacas.setText(theAlpacas.getNumOfAlpacas() + " Remaining");
+
+
             }
         });
-
         //Eat Button
         eatButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -117,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 randomNum();
+                if(theAlpacas.getNumOfAlpacas()<=0){
+                    regularalpaca1.setVisibility(View.GONE);;
+                }
 
                 if (food<5){
                     numOfAlpacas.setText("Not enough food");
@@ -173,15 +206,6 @@ public class MainActivity extends AppCompatActivity {
             }
         },0,20);
         screenHieght = screenHieght/1.5; //Might reduce travel
-
-
-
-
-
-
-
-
-
     }
     public void changePos(){
 
@@ -193,19 +217,8 @@ public class MainActivity extends AppCompatActivity {
             //regAlpaca1X = 10; //Keeps it in position x1
             regAlpacaY = screenHieght + 20; //regAlpacaY = screenHieght + 100; //Used to be Y alpaca
         }
-
         regularalpaca1.setX((float)regAlpaca1X);
-        regularalpaca1.setY((float)regAlpacaY);
-
-
-
-
+        regularalpaca1.setY((float)regAlpacaY);//regularalpaca1.setY((float)regAlpacaY);
     }
-
-
-
-
-
-
     }
 
