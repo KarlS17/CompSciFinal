@@ -140,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dayCount.setText("Day " + day++ );
-                if (deathNum>7){
-                    theAlpacas.setNumOfAlpacas(theAlpacas.getNumOfAlpacas()-3);
-                }
+//                if (deathNum>7){
+//                    theAlpacas.setNumOfAlpacas(theAlpacas.getNumOfAlpacas()-3);
+//                }
                 numOfAlpacas.setText(theAlpacas.getNumOfAlpacas() + " Remaining");
 
 
